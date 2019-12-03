@@ -11,14 +11,17 @@ public class Matisse00 {
 
     public static void main(String[] args) {
         
+        String hostname = "localhost";
+        String dbname = "biblioteca";
         
+        creaObjetos(hostname,dbname);
     }
 
     public static void creaObjetos(String hostname, String dbname) {
 
         try {
             //ABRE LA BASE DE DATOS CON EL HOSTNAME (LOCALHOST), DBNAME (RAMA) Y EL NAMESPACE "BIBLIOTECA"
-            MtDatabase db = new MtDatabase(hostname, dbname, new MtPackageObjectFactory("biblioteca", ""));
+            MtDatabase db = new MtDatabase(hostname, dbname, new MtPackageObjectFactory("","biblioteca"));
             
             //ABRE LA BASE DE DATOS Y EMPIEZA LA TRANSACCION
             db.open();
@@ -37,9 +40,9 @@ public class Matisse00 {
             l1.setPaginas(512);
 
             Libro l2 = new Libro(db);
-            l1.setTitulo("Tokio Blues");
-            l1.setEditorial("Tusquets");
-            l1.setPaginas(498);
+            l2.setTitulo("Tokio Blues");
+            l2.setEditorial("Tusquets");
+            l2.setPaginas(498);
 
             //CREA UN ARRAY DE OBRAS PARA GUARDAR LOS LIBROS Y HACER LAS RELACIONES
             Obra o1[] = new Obra[2];
@@ -58,5 +61,6 @@ public class Matisse00 {
         } catch (MtException mte) {
             System.out.println("MtException : " + mte.getMessage());
         }
+        
     }
     }
